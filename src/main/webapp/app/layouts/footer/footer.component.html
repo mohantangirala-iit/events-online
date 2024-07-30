@@ -1,3 +1,15 @@
 <div class="footer">
-  <p jhiTranslate="footer">TBD A new footer will be placed here!!</p>
+  <p translate="footer" class="pull-left">This is your footer</p>
+  <div ng-controller="BootswatchController" class="dropup pull-right">
+    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <span class="glyphicon glyphicon-adjust"></span>
+      <span class="hidden-tablet" translate="global.menu.theme">Theme</span>
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+      <li class="theme-link" ng-repeat="theme in themes">
+        <a href="" jh-switch-theme="theme">Default</a>
+      </li>
+    </ul>
+  </div>
 </div>
