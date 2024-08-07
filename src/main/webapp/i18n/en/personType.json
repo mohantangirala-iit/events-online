@@ -1,0 +1,27 @@
+{
+  "eventsOnlineApp": {
+    "personType": {
+      "home": {
+        "title": "Person Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Person Type",
+        "createOrEditLabel": "Create or edit a Person Type",
+        "notFound": "No Person Types found"
+      },
+      "created": "A new Person Type is created with identifier {{ param }}",
+      "updated": "A Person Type is updated with identifier {{ param }}",
+      "deleted": "A Person Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Person Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Person Type"
+      },
+      "id": "ID",
+      "jobTitle": "Job Title",
+      "role": "Role",
+      "level": "Level",
+      "applicationUser": "Application User"
+    }
+  }
+}

@@ -1,0 +1,188 @@
+<div>
+  <h2 id="page-heading" data-cy="EventHeading">
+    <span jhiTranslate="eventsOnlineApp.event.home.title">Events</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="eventsOnlineApp.event.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-event"
+        [routerLink]="['/event/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="eventsOnlineApp.event.home.createLabel">Create a new Event</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (events?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="eventsOnlineApp.event.home.notFound">No Events found</span>
+    </div>
+  }
+
+  @if (events && events.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="title">
+              <div class="d-flex">
+                <span jhiTranslate="eventsOnlineApp.event.title">Title</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="description">
+              <div class="d-flex">
+                <span jhiTranslate="eventsOnlineApp.event.description">Description</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="audience">
+              <div class="d-flex">
+                <span jhiTranslate="eventsOnlineApp.event.audience">Audience</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="level">
+              <div class="d-flex">
+                <span jhiTranslate="eventsOnlineApp.event.level">Level</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="language">
+              <div class="d-flex">
+                <span jhiTranslate="eventsOnlineApp.event.language">Language</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="date">
+              <div class="d-flex">
+                <span jhiTranslate="eventsOnlineApp.event.date">Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="startTime">
+              <div class="d-flex">
+                <span jhiTranslate="eventsOnlineApp.event.startTime">Start Time</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="endTime">
+              <div class="d-flex">
+                <span jhiTranslate="eventsOnlineApp.event.endTime">End Time</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="eventType">
+              <div class="d-flex">
+                <span jhiTranslate="eventsOnlineApp.event.eventType">Event Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="conference.id">
+              <div class="d-flex">
+                <span jhiTranslate="eventsOnlineApp.event.conference">Conference</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (event of events; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/event', event.id, 'view']">{{ event.id }}</a>
+              </td>
+              <td>{{ event.title }}</td>
+              <td>{{ event.description }}</td>
+              <td>{{ event.audience }}</td>
+              <td>{{ event.level }}</td>
+              <td [jhiTranslate]="'eventsOnlineApp.Language.' + (event.language ?? 'null')">
+                {{ { null: '', FRENCH: 'FRENCH', ENGLISH: 'ENGLISH', SPANISH: 'SPANISH' }[event.language ?? 'null'] }}
+              </td>
+              <td>{{ event.date | formatMediumDatetime }}</td>
+              <td>{{ event.startTime | formatMediumDatetime }}</td>
+              <td>{{ event.endTime | formatMediumDatetime }}</td>
+              <td [jhiTranslate]="'eventsOnlineApp.EventType.' + (event.eventType ?? 'null')">
+                {{ { null: '', SESSION: 'SESSION', PRESENTATION: 'PRESENTATION', DISCUSSION: 'DISCUSSION' }[event.eventType ?? 'null'] }}
+              </td>
+              <td>
+                @if (event.conference) {
+                  <div>
+                    <a [routerLink]="['/conference', event.conference.id, 'view']">{{ event.conference.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/event', event.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/event', event.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(event)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (events && events.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

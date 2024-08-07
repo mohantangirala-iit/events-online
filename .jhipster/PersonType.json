@@ -1,0 +1,26 @@
+{
+  "annotations": {
+    "changelogDate": "20240805001708"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "jobTitle",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "Role",
+      "fieldValues": "SPEAKER,GUEST,MODERATOR"
+    },
+    {
+      "fieldName": "level",
+      "fieldType": "Level",
+      "fieldValues": "BASIC,INTERMEDIATE,ADVANCED"
+    }
+  ],
+  "name": "PersonType",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

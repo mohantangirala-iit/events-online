@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20240805001705"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "streetAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "postalCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "stateProvince",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "countryName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "region",
+      "fieldType": "Region",
+      "fieldValues": "NA,LATAM,EMEA,APAC,ANZ"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Location",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

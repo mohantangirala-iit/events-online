@@ -8,7 +8,11 @@
       "entities": {
         "main": "Entities",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
-        "adminAuthority": "Authority"
+        "conference": "Conference",
+        "location": "Location",
+        "event": "Event",
+        "applicationUser": "Application User",
+        "personType": "Person Type"
       },
       "account": {
         "main": "Account",
@@ -144,5 +148,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "This is your footer"
+  "footer": "Copyright &copy; 2024"
 }

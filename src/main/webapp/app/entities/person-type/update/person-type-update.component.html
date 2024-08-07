@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-person-type-heading"
+        data-cy="PersonTypeCreateUpdateHeading"
+        jhiTranslate="eventsOnlineApp.personType.home.createOrEditLabel"
+      >
+        Create or edit a Person Type
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="eventsOnlineApp.personType.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_jobTitle" jhiTranslate="eventsOnlineApp.personType.jobTitle">Job Title</label>
+          <input type="number" class="form-control" name="jobTitle" id="field_jobTitle" data-cy="jobTitle" formControlName="jobTitle" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_role" jhiTranslate="eventsOnlineApp.personType.role">Role</label>
+          <select class="form-control" name="role" formControlName="role" id="field_role" data-cy="role">
+            <option [ngValue]="null">{{ 'eventsOnlineApp.Role.null' | translate }}</option>
+            @for (role of roleValues; track $index) {
+              <option [value]="role">{{ 'eventsOnlineApp.Role.' + role | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_level" jhiTranslate="eventsOnlineApp.personType.level">Level</label>
+          <select class="form-control" name="level" formControlName="level" id="field_level" data-cy="level">
+            <option [ngValue]="null">{{ 'eventsOnlineApp.Level.null' | translate }}</option>
+            @for (level of levelValues; track $index) {
+              <option [value]="level">{{ 'eventsOnlineApp.Level.' + level | translate }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

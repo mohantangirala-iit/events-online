@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (personType()) {
+      <div>
+        <h2 data-cy="personTypeDetailsHeading"><span jhiTranslate="eventsOnlineApp.personType.detail.title">Person Type</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ personType()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.personType.jobTitle">Job Title</span></dt>
+          <dd>
+            <span>{{ personType()!.jobTitle }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.personType.role">Role</span></dt>
+          <dd>
+            <span [jhiTranslate]="'eventsOnlineApp.Role.' + (personType()!.role ?? 'null')">{{
+              { null: '', SPEAKER: 'SPEAKER', GUEST: 'GUEST', MODERATOR: 'MODERATOR' }[personType()!.role ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.personType.level">Level</span></dt>
+          <dd>
+            <span [jhiTranslate]="'eventsOnlineApp.Level.' + (personType()!.level ?? 'null')">{{
+              { null: '', BASIC: 'BASIC', INTERMEDIATE: 'INTERMEDIATE', ADVANCED: 'ADVANCED' }[personType()!.level ?? 'null']
+            }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/person-type', personType()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

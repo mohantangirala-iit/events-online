@@ -8,7 +8,11 @@
       "entities": {
         "main": "Entités",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
-        "adminAuthority": "Authority"
+        "conference": "Conference",
+        "location": "Location",
+        "event": "Event",
+        "applicationUser": "Application User",
+        "personType": "Person Type"
       },
       "account": {
         "main": "Compte",

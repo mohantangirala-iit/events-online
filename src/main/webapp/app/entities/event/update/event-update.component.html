@@ -1,0 +1,145 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-event-heading" data-cy="EventCreateUpdateHeading" jhiTranslate="eventsOnlineApp.event.home.createOrEditLabel">
+        Create or edit a Event
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="eventsOnlineApp.event.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_title" jhiTranslate="eventsOnlineApp.event.title">Title</label>
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_description" jhiTranslate="eventsOnlineApp.event.description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_audience" jhiTranslate="eventsOnlineApp.event.audience">Audience</label>
+          <input type="text" class="form-control" name="audience" id="field_audience" data-cy="audience" formControlName="audience" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_level" jhiTranslate="eventsOnlineApp.event.level">Level</label>
+          <input type="text" class="form-control" name="level" id="field_level" data-cy="level" formControlName="level" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_language" jhiTranslate="eventsOnlineApp.event.language">Language</label>
+          <select class="form-control" name="language" formControlName="language" id="field_language" data-cy="language">
+            <option [ngValue]="null">{{ 'eventsOnlineApp.Language.null' | translate }}</option>
+            @for (language of languageValues; track $index) {
+              <option [value]="language">{{ 'eventsOnlineApp.Language.' + language | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_date" jhiTranslate="eventsOnlineApp.event.date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_startTime" jhiTranslate="eventsOnlineApp.event.startTime">Start Time</label>
+          <div class="d-flex">
+            <input
+              id="field_startTime"
+              data-cy="startTime"
+              type="datetime-local"
+              class="form-control"
+              name="startTime"
+              formControlName="startTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_endTime" jhiTranslate="eventsOnlineApp.event.endTime">End Time</label>
+          <div class="d-flex">
+            <input
+              id="field_endTime"
+              data-cy="endTime"
+              type="datetime-local"
+              class="form-control"
+              name="endTime"
+              formControlName="endTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_eventType" jhiTranslate="eventsOnlineApp.event.eventType">Event Type</label>
+          <select class="form-control" name="eventType" formControlName="eventType" id="field_eventType" data-cy="eventType">
+            <option [ngValue]="null">{{ 'eventsOnlineApp.EventType.null' | translate }}</option>
+            @for (eventType of eventTypeValues; track $index) {
+              <option [value]="eventType">{{ 'eventsOnlineApp.EventType.' + eventType | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_conference" jhiTranslate="eventsOnlineApp.event.conference">Conference</label>
+          <select
+            class="form-control"
+            id="field_conference"
+            data-cy="conference"
+            name="conference"
+            formControlName="conference"
+            [compareWith]="compareConference"
+          >
+            <option [ngValue]="null"></option>
+            @for (conferenceOption of conferencesSharedCollection; track $index) {
+              <option [ngValue]="conferenceOption">{{ conferenceOption.conferenceName }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

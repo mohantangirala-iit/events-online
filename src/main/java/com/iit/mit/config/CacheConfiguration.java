@@ -52,6 +52,12 @@ public class CacheConfiguration {
             createCache(cm, com.iit.mit.domain.User.class.getName() + ".authorities");
             createCache(cm, com.iit.mit.domain.PersistentToken.class.getName());
             createCache(cm, com.iit.mit.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, com.iit.mit.domain.Conference.class.getName());
+            createCache(cm, com.iit.mit.domain.Conference.class.getName() + ".events");
+            createCache(cm, com.iit.mit.domain.Location.class.getName());
+            createCache(cm, com.iit.mit.domain.Event.class.getName());
+            createCache(cm, com.iit.mit.domain.ApplicationUser.class.getName());
+            createCache(cm, com.iit.mit.domain.PersonType.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
