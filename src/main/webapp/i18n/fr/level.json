@@ -1,0 +1,10 @@
+{
+  "eventsOnlineApp": {
+    "Level": {
+      "null": "",
+      "BASIC": "BASIC",
+      "INTERMEDIATE": "INTERMEDIATE",
+      "ADVANCED": "ADVANCED"
+    }
+  }
+}

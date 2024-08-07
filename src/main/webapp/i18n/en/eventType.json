@@ -1,0 +1,10 @@
+{
+  "eventsOnlineApp": {
+    "EventType": {
+      "null": "",
+      "SESSION": "SESSION",
+      "PRESENTATION": "PRESENTATION",
+      "DISCUSSION": "DISCUSSION"
+    }
+  }
+}

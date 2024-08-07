@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (event()) {
+      <div>
+        <h2 data-cy="eventDetailsHeading"><span jhiTranslate="eventsOnlineApp.event.detail.title">Event</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ event()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.event.title">Title</span></dt>
+          <dd>
+            <span>{{ event()!.title }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.event.description">Description</span></dt>
+          <dd>
+            <span>{{ event()!.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.event.audience">Audience</span></dt>
+          <dd>
+            <span>{{ event()!.audience }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.event.level">Level</span></dt>
+          <dd>
+            <span>{{ event()!.level }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.event.language">Language</span></dt>
+          <dd>
+            <span [jhiTranslate]="'eventsOnlineApp.Language.' + (event()!.language ?? 'null')">{{
+              { null: '', FRENCH: 'FRENCH', ENGLISH: 'ENGLISH', SPANISH: 'SPANISH' }[event()!.language ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.event.date">Date</span></dt>
+          <dd>
+            <span>{{ event()!.date | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.event.startTime">Start Time</span></dt>
+          <dd>
+            <span>{{ event()!.startTime | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.event.endTime">End Time</span></dt>
+          <dd>
+            <span>{{ event()!.endTime | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.event.eventType">Event Type</span></dt>
+          <dd>
+            <span [jhiTranslate]="'eventsOnlineApp.EventType.' + (event()!.eventType ?? 'null')">{{
+              { null: '', SESSION: 'SESSION', PRESENTATION: 'PRESENTATION', DISCUSSION: 'DISCUSSION' }[event()!.eventType ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="eventsOnlineApp.event.conference">Conference</span></dt>
+          <dd>
+            @if (event()!.conference) {
+              <div>
+                <a [routerLink]="['/conference', event()!.conference?.id, 'view']">{{ event()!.conference?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/event', event()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

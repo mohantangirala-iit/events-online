@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20240805001707"
+  },
+  "applications": "*",
+  "documentation": "The AppUser entity.",
+  "fields": [
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    }
+  ],
+  "name": "ApplicationUser",
+  "relationships": [
+    {
+      "otherEntityName": "personType",
+      "relationshipName": "persontype",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "conference",
+      "relationshipName": "person",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "options": {
+        "id": true,
+        "onDelete": "CASCADE"
+      },
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "internalUser",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

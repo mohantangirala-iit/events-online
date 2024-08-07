@@ -1,0 +1,82 @@
+entity Conference {
+    conferenceName String required
+    startDate Instant
+    endDate Instant
+}
+
+entity Location {
+    streetAddress String
+    postalCode String
+    city String
+    stateProvince String
+    countryName String
+    region Region
+}
+
+entity Event {
+    title String
+    description String
+    audience String
+    level String
+    language Language
+    date Instant
+    startTime Instant
+    endTime Instant
+    eventType EventType
+}
+
+/**
+ * The AppUser entity.
+ */
+entity ApplicationUser {
+    phoneNumber String
+}
+
+entity PersonType {
+    jobTitle Long
+    role Role
+    level Level
+}
+
+enum EventType{
+    SESSION, PRESENTATION, DISCUSSION 
+}
+
+enum Region{
+     NA, LATAM, EMEA, APAC, ANZ
+}
+
+enum Language {
+    FRENCH, ENGLISH, SPANISH
+}
+
+enum Role{
+    SPEAKER, GUEST, MODERATOR
+}
+
+enum Level{
+     BASIC, INTERMEDIATE, ADVANCED
+}
+
+relationship OneToOne {
+    ApplicationUser{persontype} to PersonType
+    Conference{location} to Location
+    ApplicationUser{person} to Conference
+    ApplicationUser{internalUser(login)} to @OnDelete("CASCADE") @Id User with builtInEntity
+}
+
+relationship OneToMany{
+   Conference{event} to Event
+}
+
+// Set pagination options
+paginate Conference with infinite-scroll
+paginate Event with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+filter Conference, Event, Location

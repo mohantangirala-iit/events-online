@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20240805001704"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "conferenceName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Conference",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "location",
+      "relationshipName": "location",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "event",
+      "relationshipName": "event",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

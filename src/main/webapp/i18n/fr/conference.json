@@ -1,0 +1,29 @@
+{
+  "eventsOnlineApp": {
+    "conference": {
+      "home": {
+        "title": "Conferences",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Conference",
+        "createOrEditLabel": "Créer ou éditer un Conference",
+        "notFound": "Aucun Conference trouvé"
+      },
+      "created": "Un nouveau Conference a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Conference avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Conference avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Conference {{ id }} ?"
+      },
+      "detail": {
+        "title": "Conference"
+      },
+      "id": "ID",
+      "conferenceName": "Conference Name",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "location": "Location",
+      "event": "Event",
+      "applicationUser": "Application User"
+    }
+  }
+}

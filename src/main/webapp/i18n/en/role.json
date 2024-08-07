@@ -1,0 +1,10 @@
+{
+  "eventsOnlineApp": {
+    "Role": {
+      "null": "",
+      "SPEAKER": "SPEAKER",
+      "GUEST": "GUEST",
+      "MODERATOR": "MODERATOR"
+    }
+  }
+}
