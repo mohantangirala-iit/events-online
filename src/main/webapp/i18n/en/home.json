@@ -2,6 +2,13 @@
   "home": {
     "title": "Welcome to Events Online!",
     "subtitle": "Your online events management platform!",
+    "events": {
+      "title": "Events",
+      "all": "All Events",
+      "upcoming": "Upcoming Events",
+      "past": "Past Events",
+      "popular": "Popular Event"
+    },
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     }
